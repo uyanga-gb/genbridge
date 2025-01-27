@@ -1,11 +1,11 @@
 import { AppProps } from 'next/app'
 import Head from 'next/head'
-import { Layout } from '../components/Layout/Layout'
+import { Layout } from '../components/common/Layout'
 import { useRouter } from 'next/router'
 import { ApolloProvider } from '@apollo/client';
 
-import 'styles/global.scss'
-import client from 'lib/apollo-client';
+import 'src/styles/global.scss'
+import client from 'src/lib/apollo-client';
 
 function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter()
