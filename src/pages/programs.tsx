@@ -10,6 +10,9 @@ interface IProgram {
     title: Maybe<string> | undefined;
     location: Maybe<string> | undefined;
     description: Maybe<string> | undefined;
+    imageUrl: Maybe<string> | undefined;
+    isFeatured: Maybe<boolean> | undefined;
+    status: Maybe<Maybe<string>[]> | undefined;
 }
 
 const getPrograms = (data: Program[]): IProgram[] => {
@@ -21,7 +24,10 @@ const getPrograms = (data: Program[]): IProgram[] => {
             id: program?.databaseId.toString(),
             title: program?.title,
             location: program?.programsFields?.location,
-            description: program?.programsFields?.description,
+            isFeatured: program?.programsFields?.isFeatured,
+            status: program?.programsFields?.status,
+            imageUrl: program?.featuredImage?.node?.mediaItemUrl,
+            description: program?.content,
         })
     );
 
@@ -74,7 +80,8 @@ export default function ProgramsPage() {
                             key={program.id}
                             title={program.title || "Untitled"}
                             description={program.description || "No description available."}
-                            imageUrl="/images/default-program.jpg" // Placeholder for program image
+                            imageUrl={program.imageUrl || "/images/program-default.jpg"}
+                            status={program.status}
                             link={`/programs/${program.id}`} // Dynamic link to program details
                         />
                     ))}

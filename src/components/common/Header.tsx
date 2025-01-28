@@ -4,7 +4,7 @@ const Header = () => {
     return (
         <header className="bg-blue-600 text-white py-4 px-6">
             <nav className="flex justify-between items-center">
-                <div className="text-xl font-bold">GenBridge</div>
+                <div className="text-xl font-bold"><Link href="/">GenBridge</Link></div>
                 <ul className="flex space-x-4">
                     <li>
                         {/* Use absolute paths for Next.js pages */}

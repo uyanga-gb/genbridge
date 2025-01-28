@@ -10,13 +10,13 @@ interface HeroSectionProps {
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
-                                                     title,
-                                                     subtitle,
-                                                     buttonText1,
-                                                     buttonText2,
-                                                     onButtonClick1,
-                                                     onButtonClick2,
-                                                 }) => {
+    title,
+    subtitle,
+    buttonText1,
+    buttonText2,
+    onButtonClick1,
+    onButtonClick2,
+}) => {
     return (
         <section className="bg-blue-600 text-white text-center py-16">
             <h1 className="text-4xl font-bold">{title}</h1>

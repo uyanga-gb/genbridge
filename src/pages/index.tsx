@@ -10,6 +10,10 @@ interface IProgram {
     id: string;
     title: Maybe<string> | undefined;
     location: Maybe<string> | undefined;
+    description: Maybe<string> | undefined;
+    imageUrl: Maybe<string> | undefined;
+    isFeatured: Maybe<boolean> | undefined;
+    status: Maybe<Maybe<string>[]> | undefined;
 }
 
 const getPrograms = (data: Program[]): IProgram[] => {
@@ -21,6 +25,10 @@ const getPrograms = (data: Program[]): IProgram[] => {
             id: program?.databaseId.toString(),
             title: program?.title,
             location: program?.programsFields?.location,
+            isFeatured: program?.programsFields?.isFeatured,
+            status: program?.programsFields?.status,
+            imageUrl: program?.featuredImage?.node?.mediaItemUrl,
+            description: program?.content,
         })
     );
 
@@ -70,10 +78,11 @@ export default function Index() {
                     {programs.map((program: IProgram) => (
                         <ProgramCard
                             key={program.id}
-                            title={program.title || 'Untitled'}
-                            description={`Location: ${program.location || 'TBD'}`}
-                            imageUrl="/images/default-program.jpg" // Replace with a real image URL
-                            link="/programs" // Replace with a dynamic link if available
+                            title={program.title || "Untitled"}
+                            description={program.description || "No description available."}
+                            imageUrl={program.imageUrl || "/images/program-default.jpg"}
+                            status={program.status}
+                            link={`/programs/${program.id}`} // Dynamic link to program details
                         />
                     ))}
                 </div>
