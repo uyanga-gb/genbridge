@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useQuery } from '@apollo/client';
+import { GET_HOMES } from 'src/lib/queries';
 import { GET_PROGRAMS } from 'src/lib/queries';
 import { Maybe, Program } from 'graphql/generated';
 import HeroSection from '../components/common/HeroSection';
@@ -36,22 +37,23 @@ const getPrograms = (data: Program[]): IProgram[] => {
 };
 
 export default function Index() {
-    const { loading, error, data } = useQuery(GET_PROGRAMS);
+    const { loading1, error1, data1 } = useQuery(GET_PROGRAMS);
+    const { loading2, error2, data2 } = useQuery(GET_HOMES);
 
-    if (loading)
+    if (loading1 or loading2)
         return (
             <div className="flex items-center justify-center h-screen">
                 <p>Loading...</p>
             </div>
         );
-    if (error)
+    if (error1 or error2)
         return (
             <div className="flex items-center justify-center h-screen">
                 <p>Error: {error.message}</p>
             </div>
         );
 
-    const programs = getPrograms(data.programs.nodes);
+    const programs = getPrograms(data1.programs.nodes);
 
     return (
         <div>
@@ -63,10 +65,10 @@ export default function Index() {
             <HeroSection
                 title="Empowering Youth for a Better Future"
                 subtitle="Connect, Learn, and Grow with GenBridge"
-                buttonText1="Join Now"
-                buttonText2="Explore Programs"
-                onButtonClick1={() => (window.location.href = '/get-involved')}
-                onButtonClick2={() => (window.location.href = '/programs')}
+                buttonText1="Learn More"
+                buttonText2="Join Now"
+                onButtonClick1={() => (window.location.href = '/programs')}
+                onButtonClick2={() => (window.location.href = '/get-involved')}
             />
 
             {/* Programs Section */}
