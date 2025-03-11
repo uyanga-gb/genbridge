@@ -40,13 +40,13 @@ export default function Index() {
     const { loading1, error1, data1 } = useQuery(GET_PROGRAMS);
     const { loading2, error2, data2 } = useQuery(GET_HOMES);
 
-    if (loading1 or loading2)
+    if (loading1 || loading2)
         return (
             <div className="flex items-center justify-center h-screen">
                 <p>Loading...</p>
             </div>
         );
-    if (error1 or error2)
+    if (error1 || error2)
         return (
             <div className="flex items-center justify-center h-screen">
                 <p>Error: {error.message}</p>
