@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const GET_HOMES = gql`
   query GetHomes {
-    homes {
+    homes(first: 20) {
       nodes {
         databaseId
         title
